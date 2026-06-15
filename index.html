@@ -10,14 +10,15 @@
 
         /* 1. CSS 变量与重置 */
         :root {
-            --bg-darker: #030712;
-            --bg-card: rgba(15, 23, 42, 0.35);
-            --bg-light: #0f172a;
+            --bg-darker: #020617; /* Slate 950 */
+            --bg-card: rgba(15, 23, 42, 0.45);
+            --bg-light: #0b0f19;
             --accent-green: #00f299;
             --accent-orange: #ff6a3d;
-            --text-main: #94a3b8;
-            --text-bright: #f8fafc;
-            --text-muted: #64748b;
+            --accent-teal: #06b6d4;
+            --text-main: #94a3b8; /* Slate 400 */
+            --text-bright: #f8fafc; /* Slate 50 */
+            --text-muted: #64748b; /* Slate 500 */
             --border-steel: rgba(255, 255, 255, 0.05);
             --font-sans: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             --font-mono: "JetBrains Mono", monospace;
@@ -40,9 +41,9 @@
             line-height: 1.6;
             overflow-x: hidden;
             background-image: 
-                radial-gradient(circle at 10% 20%, rgba(0, 242, 153, 0.04) 0%, transparent 40%),
-                radial-gradient(circle at 90% 80%, rgba(255, 106, 61, 0.04) 0%, transparent 40%),
-                radial-gradient(circle at 50% 50%, rgba(13, 148, 136, 0.01) 0%, transparent 60%);
+                radial-gradient(circle at 50% 20%, rgba(0, 242, 153, 0.06) 0%, transparent 50%),
+                radial-gradient(circle at 10% 80%, rgba(255, 106, 61, 0.04) 0%, transparent 40%),
+                radial-gradient(circle at 90% 40%, rgba(6, 182, 212, 0.03) 0%, transparent 45%);
             background-attachment: fixed;
         }
 
@@ -50,12 +51,12 @@
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
             background-image: 
-                linear-gradient(to right, rgba(255, 255, 255, 0.015) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+                linear-gradient(to right, rgba(255, 255, 255, 0.012) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.012) 1px, transparent 1px);
             background-size: 80px 80px;
             pointer-events: none;
             z-index: -1;
-            opacity: 0.6;
+            opacity: 0.8;
         }
 
         /* 3. 版心容器与通用线框网格 */
@@ -67,7 +68,7 @@
 
         .steel-row {
             border-bottom: 1px solid var(--border-steel);
-            padding: 90px 0;
+            padding: 95px 0;
             position: relative;
         }
 
@@ -76,7 +77,7 @@
             position: absolute;
             width: 1px;
             height: 100%;
-            background-color: rgba(255, 255, 255, 0.02);
+            background-color: rgba(255, 255, 255, 0.015);
             top: 0;
         }
         .steel-row::before { left: 0; }
@@ -85,12 +86,12 @@
         /* 4. 导航栏 */
         header {
             border-bottom: 1px solid var(--border-steel);
-            background-color: rgba(3, 7, 18, 0.75);
+            background-color: rgba(2, 6, 23, 0.8);
             position: sticky;
             top: 0;
             z-index: 100;
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
         }
 
         .nav-container {
@@ -106,17 +107,17 @@
             gap: 12px;
             font-family: var(--font-sans);
             font-weight: 800;
-            font-size: 19px;
+            font-size: 20px;
             color: var(--text-bright);
             text-decoration: none;
-            letter-spacing: 1px;
-            background: linear-gradient(135deg, #ffffff 40%, #a5f3fc 100%);
+            letter-spacing: 1.5px;
+            background: linear-gradient(135deg, #ffffff 45%, #a5f3fc 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         .logo-svg {
-            filter: drop-shadow(0 0 8px rgba(0, 242, 153, 0.4));
+            filter: drop-shadow(0 0 8px rgba(0, 242, 153, 0.45));
             transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
@@ -129,12 +130,12 @@
             font-size: 10px;
             color: var(--accent-green);
             background-color: rgba(0, 242, 153, 0.06);
-            padding: 4px 10px;
+            padding: 4px 12px;
             border: 1px solid rgba(0, 242, 153, 0.25);
             border-radius: 99px;
             text-transform: uppercase;
             letter-spacing: 1.5px;
-            box-shadow: 0 0 10px rgba(0, 242, 153, 0.05);
+            box-shadow: 0 0 12px rgba(0, 242, 153, 0.08);
         }
 
         .nav-links {
@@ -157,19 +158,27 @@
             text-shadow: 0 0 8px rgba(0, 242, 153, 0.3);
         }
 
-        /* 5. Hero 屏 */
-        .hero-section {
-            display: grid;
-            grid-template-columns: 1.2fr 1fr;
-            gap: 60px;
-            align-items: center;
-            min-height: 75vh;
-        }
-
-        .hero-left {
+        /* 5. 居中式大英雄屏 (Hero Centered Block) */
+        .hero-centered-section {
             display: flex;
             flex-direction: column;
-            align-items: flex-start;
+            align-items: center;
+            text-align: center;
+            padding: 110px 0 90px 0;
+            position: relative;
+        }
+
+        .hero-glow-bg {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 70%;
+            height: 70%;
+            background: radial-gradient(circle, rgba(0, 242, 153, 0.06) 0%, rgba(255, 106, 61, 0.02) 40%, transparent 70%);
+            z-index: -1;
+            pointer-events: none;
+            filter: blur(50px);
         }
 
         .hero-badge {
@@ -178,92 +187,134 @@
             font-weight: 700;
             color: var(--accent-green);
             letter-spacing: 4px;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             text-transform: uppercase;
-            border-left: 2px solid var(--accent-green);
-            padding-left: 12px;
+            background: rgba(0, 242, 153, 0.06);
+            border: 1px solid rgba(0, 242, 153, 0.2);
+            padding: 4px 16px;
+            border-radius: 99px;
+            box-shadow: 0 0 15px rgba(0, 242, 153, 0.05);
         }
 
         .hero-title {
-            font-size: 52px;
+            font-size: 56px;
             font-weight: 800;
             color: var(--text-bright);
-            line-height: 1.15;
-            margin-bottom: 25px;
-            letter-spacing: -1.5px;
-            background: linear-gradient(135deg, #ffffff 40%, #cbd5e1 100%);
+            line-height: 1.1;
+            margin-bottom: 12px;
+            letter-spacing: -2px;
+            text-transform: uppercase;
+            background: linear-gradient(135deg, #ffffff 40%, #cbd5e1 90%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(255, 255, 255, 0.02);
         }
 
-        .hero-desc {
-            font-size: 15px;
-            color: var(--text-main);
-            margin-bottom: 35px;
-            text-align: justify;
-            line-height: 1.7;
-        }
-
-        .hero-right {
-            position: relative;
-            width: 100%;
-            height: 420px;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            overflow: hidden;
-            border-radius: 16px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 
-                        0 0 30px rgba(0, 242, 153, 0.03);
-        }
-
-        .hero-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: grayscale(15%) contrast(105%);
-            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .hero-right:hover .hero-img {
-            transform: scale(1.04);
-        }
-
-        .hero-overlay {
-            position: absolute;
-            bottom: 0; left: 0; width: 100%;
-            background: linear-gradient(transparent, rgba(3, 7, 18, 0.95));
-            padding: 20px 25px;
-            font-family: var(--font-mono);
-            font-size: 11px;
+        .hero-tagline-cn {
+            font-size: 24px;
+            font-weight: 600;
             color: var(--accent-green);
-            border-top: 1px solid rgba(255, 255, 255, 0.03);
+            margin-bottom: 15px;
+            letter-spacing: 4px;
+        }
+
+        .hero-tagline-en {
+            font-family: var(--font-sans);
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--text-muted);
+            letter-spacing: 3px;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            max-width: 800px;
+        }
+
+        .hero-desc-centered {
+            font-size: 16px;
+            color: var(--text-main);
+            margin-bottom: 45px;
+            line-height: 1.8;
+            max-width: 860px;
+            text-align: center;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
         }
 
         /* 统一按钮设计 */
         .btn {
-            display: inline-block;
-            background: linear-gradient(135deg, var(--accent-green) 0%, #00d27f 100%);
-            color: #030712;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
             font-family: var(--font-sans);
             font-size: 14px;
             font-weight: 700;
             text-decoration: none;
-            padding: 14px 36px;
+            padding: 15px 36px;
             border-radius: 99px;
             transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-            border: 1px solid var(--accent-green);
             cursor: pointer;
-            box-shadow: 0 8px 20px rgba(0, 242, 153, 0.15);
+            outline: none;
         }
 
-        .btn:hover {
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-green) 0%, #00d27f 100%);
+            color: #020617;
+            border: 1px solid var(--accent-green);
+            box-shadow: 0 8px 25px rgba(0, 242, 153, 0.2);
+        }
+
+        .btn-primary:hover {
             transform: translateY(-2px);
             background: transparent;
             color: var(--accent-green);
-            box-shadow: 0 12px 24px rgba(0, 242, 153, 0.25), 
+            box-shadow: 0 12px 30px rgba(0, 242, 153, 0.3), 
                         inset 0 0 0 1px var(--accent-green);
         }
 
+        .btn-outline {
+            background: transparent;
+            color: var(--text-bright);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .btn-outline:hover {
+            transform: translateY(-2px);
+            border-color: var(--accent-orange);
+            color: var(--accent-orange);
+            box-shadow: 0 8px 25px rgba(255, 106, 61, 0.15);
+        }
+
         /* 6. Philosophy 模块 */
+        .principles-intro {
+            background: rgba(15, 23, 42, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 50px;
+            backdrop-filter: blur(12px);
+            box-shadow: inset 0 0 20px rgba(255,255,255,0.01);
+        }
+
+        .principles-intro h4 {
+            font-size: 19px;
+            font-weight: 700;
+            color: var(--text-bright);
+            margin-bottom: 15px;
+            border-left: 3px solid var(--accent-green);
+            padding-left: 15px;
+        }
+
+        .principles-intro p {
+            font-size: 14.5px;
+            line-height: 1.7;
+            color: var(--text-main);
+            text-align: justify;
+        }
+
         .philosophy-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -281,6 +332,8 @@
             transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             position: relative;
+            display: flex;
+            flex-direction: column;
         }
 
         .philosophy-card:hover {
@@ -290,28 +343,80 @@
                         0 0 25px rgba(0, 242, 153, 0.08);
         }
 
+        /* SVG 原理动画 */
+        .card-svg-container {
+            height: 90px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .principle-svg {
+            overflow: visible;
+        }
+
+        /* 动画定义 */
+        @keyframes rotateOrbit {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes helixBreath {
+            0%, 100% { transform: scaleY(1); opacity: 0.8; }
+            50% { transform: scaleY(1.05); opacity: 1; }
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { filter: drop-shadow(0 0 3px var(--accent-teal)); opacity: 0.8; }
+            50% { filter: drop-shadow(0 0 10px var(--accent-teal)); opacity: 1; }
+        }
+
+        .animated-orbits {
+            transform-origin: 18px 18px;
+            animation: rotateOrbit 12s linear infinite;
+        }
+
+        .animated-helix {
+            animation: helixBreath 4s ease-in-out infinite;
+        }
+
+        .animated-nodes {
+            animation: pulseGlow 3s ease-in-out infinite;
+        }
+
         .card-num {
             font-family: var(--font-mono);
             font-size: 11px;
             font-weight: 500;
-            color: var(--accent-green);
-            margin-bottom: 20px;
+            color: var(--text-muted);
+            margin-bottom: 10px;
             display: block;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
         }
 
         .card-title {
-            font-size: 21px;
+            font-size: 20px;
             color: var(--text-bright);
-            margin-bottom: 18px;
+            margin-bottom: 15px;
             font-weight: 700;
+        }
+
+        .card-tag {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            color: var(--text-muted);
+            margin-bottom: 15px;
+            display: block;
         }
 
         .card-body {
             font-size: 14px;
             color: var(--text-main);
             text-align: justify;
-            line-height: 1.6;
+            line-height: 1.65;
         }
 
         /* 7. Metaphor 模块 */
@@ -326,7 +431,7 @@
             border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 16px;
             overflow: hidden;
-            height: 400px;
+            height: 420px;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 
                         0 0 30px rgba(255, 106, 61, 0.03);
         }
@@ -360,7 +465,7 @@
             border-left: 3px solid var(--accent-orange);
             padding: 5px 0 5px 20px;
             font-family: var(--font-sans);
-            font-size: 16px;
+            font-size: 15.5px;
             font-weight: 500;
             font-style: italic;
             color: var(--text-bright);
@@ -402,7 +507,7 @@
         .slider-wrapper {
             position: relative;
             width: 100%;
-            background: rgba(15, 23, 42, 0.3);
+            background: rgba(15, 23, 42, 0.30);
             border: 1px solid rgba(255, 255, 255, 0.04);
             border-radius: 16px;
             padding: 50px;
@@ -443,7 +548,7 @@
         }
 
         .slide-info h4 {
-            font-size: 24px;
+            font-size: 23px;
             font-weight: 700;
             color: var(--text-bright);
             margin-bottom: 18px;
@@ -514,7 +619,7 @@
             font-weight: bold;
         }
 
-        /* 9. 推荐书架 */
+        /* 9. 推荐原著书架 (Mockup-aligned Vertical Cards) */
         .books-container {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -525,36 +630,100 @@
         .book-card {
             background: var(--bg-card);
             border: 1px solid var(--border-steel);
-            padding: 35px 25px;
             border-radius: 16px;
+            padding: 24px;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
             transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
         }
 
         .book-card:hover {
-            border-color: rgba(255, 106, 61, 0.25);
+            border-color: rgba(255, 106, 61, 0.3);
             transform: translateY(-8px);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 
                         0 0 25px rgba(255, 106, 61, 0.08);
         }
 
-        .book-header {
+        /* 电子书发光封面 */
+        .book-cover {
+            height: 200px;
+            width: 100%;
+            background: linear-gradient(135deg, #090d1a 0%, #03050d 100%);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .cover-glow {
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            filter: blur(35px);
+            opacity: 0.25;
+            z-index: 1;
+        }
+
+        .glow-green { background: var(--accent-green); }
+        .glow-orange { background: var(--accent-orange); }
+        .glow-teal { background: var(--accent-teal); }
+        .glow-purple { background: #a855f7; }
+
+        .cover-svg {
+            z-index: 2;
+            overflow: visible;
+        }
+
+        .cover-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 15px;
+            z-index: 3;
             font-family: var(--font-mono);
-            font-size: 11px;
-            font-weight: 500;
-            color: var(--accent-orange);
-            margin-bottom: 18px;
+            font-size: 8px;
+            color: rgba(255, 255, 255, 0.3);
+            pointer-events: none;
             letter-spacing: 1px;
         }
 
-        .book-title {
-            font-size: 17px;
-            color: var(--text-bright);
+        .cover-overlay span:last-child {
+            align-self: flex-end;
+        }
+
+        .book-info-block {
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .book-header {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--text-muted);
             margin-bottom: 10px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .book-title {
+            font-size: 16px;
+            color: var(--text-bright);
+            margin-bottom: 8px;
             font-weight: 700;
             line-height: 1.4;
         }
@@ -562,24 +731,46 @@
         .book-author {
             font-size: 13px;
             color: var(--text-muted);
-            margin-bottom: 25px;
+            margin-bottom: 12px;
+        }
+
+        .book-rating {
+            font-size: 11px;
+            color: var(--accent-orange);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .book-rating span {
+            color: var(--text-muted);
+            font-family: var(--font-mono);
         }
 
         .book-buy {
-            font-family: var(--font-mono);
-            font-size: 12px;
-            font-weight: 500;
+            font-family: var(--font-sans);
+            font-size: 13px;
+            font-weight: 700;
             color: var(--accent-orange);
             text-decoration: none;
-            display: flex;
+            display: inline-flex;
             align-items: center;
-            gap: 6px;
-            transition: 0.3s;
+            justify-content: center;
+            width: 100%;
+            padding: 10px 0;
+            border: 1px solid rgba(255, 106, 61, 0.2);
+            border-radius: 8px;
+            transition: all 0.3s;
+            background-color: rgba(255, 106, 61, 0.02);
+            margin-top: auto;
         }
 
         .book-buy:hover {
             color: #fff;
-            text-shadow: 0 0 8px rgba(255, 106, 61, 0.4);
+            background-color: var(--accent-orange);
+            border-color: var(--accent-orange);
+            box-shadow: 0 5px 15px rgba(255, 106, 61, 0.25);
         }
 
         /* 10. Channels 渠道接入屏 */
@@ -608,15 +799,61 @@
             transform: translateY(-3px);
         }
 
-        .channel-qr {
+        /* 腾讯 ima 像素风格二维码 */
+        .channel-qr-container {
             width: 120px;
             height: 120px;
             border: 1px solid rgba(255, 255, 255, 0.08);
-            background: #fff;
-            padding: 8px;
+            background: linear-gradient(135deg, #090f1f 0%, #03050c 100%);
+            padding: 15px;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .channel-qr-container::before {
+            content: "";
+            position: absolute;
+            width: calc(100% - 16px);
+            height: calc(100% - 16px);
+            border: 1px dashed rgba(0, 242, 153, 0.15);
             border-radius: 8px;
-            object-fit: contain;
-            filter: brightness(0.95) contrast(1.05);
+        }
+
+        .qr-label-top {
+            font-family: var(--font-mono);
+            font-size: 9px;
+            font-weight: bold;
+            color: var(--accent-green);
+            z-index: 2;
+            letter-spacing: 1px;
+            margin-bottom: 2px;
+        }
+
+        .qr-label-mid {
+            font-family: var(--font-sans);
+            font-weight: 800;
+            font-size: 16px;
+            color: #fff;
+            z-index: 2;
+            letter-spacing: 1.5px;
+            text-shadow: 0 0 10px rgba(255,255,255,0.1);
+        }
+
+        .qr-label-orange {
+            color: var(--accent-orange);
+        }
+
+        .qr-label-bot {
+            font-family: var(--font-sans);
+            font-size: 9px;
+            color: var(--text-muted);
+            z-index: 2;
+            margin-top: 5px;
         }
 
         .channel-info h4 {
@@ -637,9 +874,15 @@
             font-size: 11px;
             color: var(--accent-green);
             background: rgba(3, 7, 18, 0.6);
-            padding: 5px 10px;
+            padding: 5px 12px;
             border: 1px dashed rgba(0, 242, 153, 0.3);
             border-radius: 4px;
+            display: inline-block;
+        }
+
+        .channel-code-orange {
+            color: var(--accent-orange);
+            border-color: rgba(255, 106, 61, 0.3);
         }
 
         /* 11. 明星会员与作品墙 */
@@ -697,15 +940,15 @@
 
         /* 12. 订阅版块与页脚 */
         .subscribe-box {
-            background: linear-gradient(135deg, rgba(15, 23, 42, 0.6) 0%, rgba(3, 7, 18, 0.8) 100%);
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.65) 0%, rgba(2, 6, 23, 0.95) 100%);
             border: 1px solid rgba(255, 255, 255, 0.05);
             padding: 70px 45px;
             border-radius: 24px;
             text-align: center;
             max-width: 800px;
             margin: 50px auto 0 auto;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), 
-                        inset 0 0 30px rgba(255, 255, 255, 0.02);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.55), 
+                        inset 0 0 40px rgba(255, 255, 255, 0.02);
         }
 
         .subscribe-box h3 {
@@ -722,7 +965,7 @@
             font-size: 14.5px;
             color: var(--text-muted);
             margin-bottom: 35px;
-            line-height: 1.6;
+            line-height: 1.65;
         }
 
         .sub-input-group {
@@ -732,7 +975,7 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 99px;
             overflow: hidden;
-            background-color: rgba(3, 7, 18, 0.8);
+            background-color: rgba(2, 6, 23, 0.85);
             padding: 6px;
             transition: all 0.3s;
         }
@@ -762,7 +1005,7 @@
 
         .sub-btn {
             background: linear-gradient(135deg, var(--accent-green) 0%, #00d27f 100%);
-            color: #030712;
+            color: #020617;
             border: none;
             padding: 0 32px;
             font-family: var(--font-sans);
@@ -801,9 +1044,8 @@
 
         /* 移动端适配 */
         @media (max-width: 992px) {
-            .hero-section {
-                grid-template-columns: 1fr;
-                gap: 40px;
+            .hero-centered-section {
+                padding: 80px 0 60px 0;
             }
             .philosophy-grid {
                 grid-template-columns: 1fr;
@@ -826,6 +1068,14 @@
         }
 
         @media (max-width: 576px) {
+            .hero-title {
+                font-size: 38px;
+            }
+            .hero-buttons {
+                flex-direction: column;
+                width: 100%;
+                max-width: 320px;
+            }
             .books-container {
                 grid-template-columns: 1fr;
             }
@@ -839,7 +1089,7 @@
             .sub-input {
                 border: 1px solid rgba(255, 255, 255, 0.1);
                 border-radius: 99px;
-                background-color: rgba(3, 7, 18, 0.8);
+                background-color: rgba(2, 6, 23, 0.85);
                 padding: 15px 25px;
             }
             .sub-btn {
@@ -860,15 +1110,15 @@
             <a href="#" class="brand">
                 <!-- 自设计的硬核几何 SVG LOGO：代表天道、人道、世道的稳固三角与秩序圆心，完美契合 PBS 主旨 -->
                 <svg class="logo-svg" width="34" height="34" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <polygon points="18,3 33,30 3,30" stroke="#00ff66" stroke-width="2.5" stroke-linejoin="round" fill="none"/>
-                    <circle cx="18" cy="21" r="7" stroke="#ff5500" stroke-width="1.5" fill="none"/>
-                    <circle cx="18" cy="21" r="2" fill="#00ff66"/>
+                    <polygon points="18,3 33,30 3,30" stroke="#00f299" stroke-width="2.5" stroke-linejoin="round" fill="none"/>
+                    <circle cx="18" cy="21" r="7" stroke="#ff6a3d" stroke-width="1.5" fill="none"/>
+                    <circle cx="18" cy="21" r="2" fill="#00f299"/>
                 </svg>
                 <span>PBS.ZONE</span>
             </a>
             <span class="status-badge">System: Low Entropy</span>
             <ul class="nav-links">
-                <li><a href="#philosophy">第一性公理</a></li>
+                <li><a href="#philosophy">第一性原理</a></li>
                 <li><a href="#metaphor">工具避难所</a></li>
                 <li><a href="#slices">176讲切片</a></li>
                 <li><a href="#library">原典书架</a></li>
@@ -880,60 +1130,117 @@
     <!-- 主体容器 -->
     <div class="container">
 
-        <!-- 1. Hero 屏 -->
-        <section class="steel-row hero-section">
-            <div class="hero-left">
-                <span class="hero-badge">THE DECISION SANDBOX</span>
-                <h1 class="hero-title">PBS 第一性原理书房</h1>
-                <p class="hero-desc">
-                    这<b>不是一门课</b>，而是一套让中年男人在不确定时代<b>重新拿回逻辑主权</b>的地下工具房。<br><br>
-                    在外面，信息很满，噪音很响，情绪很杂，真正能沉淀为决策常数的东西很少。PBS 不贩卖任何万能商业公式，我们老老实实为你提供物理、生物与系统科学的最底层公理，用严密的自然科学逻辑，为你的决策做硬核体检。
-                </p>
-                <a href="#subscribe" class="btn">提交申请 门禁准入</a>
-            </div>
-            <div class="hero-right">
-                <img src="./pbs_vertical_vault_1773755726861.webp" alt="Maxwell Vault" class="hero-img">
-                <div class="hero-overlay">> pbs_local_node_active: // Entrance // Maxwell's Gate</div>
+        <!-- 1. Hero 屏 (Mockup 居中大视觉结构) -->
+        <section class="steel-row hero-centered-section">
+            <div class="hero-glow-bg"></div>
+            <span class="hero-badge">THE DECISION SANDBOX // 逻辑避难所</span>
+            <h1 class="hero-title">FIRST-PRINCIPLES DECISION SANCTUARY</h1>
+            <p class="hero-tagline-cn">PBS 第一性原理书房</p>
+            <p class="hero-tagline-en">MASTER COMPLEXITY. HARNESS SYSTEMS THINKING. NAVIGATE CHAOS THROUGH RIGOROUS FRAMEWORKS.</p>
+            <p class="hero-desc-centered">
+                这<b>不是一门课</b>，而是一套让中年男人在不确定时代<b>重新拿回逻辑主权</b>的地下工具房。<br><br>
+                在外面，信息很满，噪音很响，情绪很杂，真正能沉淀为决策常数的东西很少。PBS 不贩卖任何万能商业公式，我们老老实实为你提供物理、生物与系统科学的最底层规律，用严密的自然科学公理，为你的决策做硬核审计。
+            </p>
+            <div class="hero-buttons">
+                <a href="#subscribe" class="btn btn-primary">提交申请 门禁准入</a>
+                <a href="#philosophy" class="btn btn-outline">探索三大原理</a>
             </div>
         </section>
 
-        <!-- 2. Philosophy 释义与科学公理 -->
+        <!-- 2. Philosophy 释义与科学原理 -->
         <section id="philosophy" class="steel-row">
             <div class="section-header">
                 <div class="section-title">
-                    <h2>第一性科学公理</h2>
+                    <h2>第一性科学原理</h2>
                     <p>> Why PBS? Why not teach direct recipes?</p>
                 </div>
             </div>
-            <div class="hero-desc" style="max-width: 850px; margin-bottom: 40px;">
-                世面上教的具体商业技巧就像软件应用，每年都在更新和折旧；而自然科学的客观公理，则是世界的硬件驱动程序。我们不喂给你直接的商业话术，只把最原始的物理学、生物演化和系统科学原典铺在面前，由你自主在逻辑框架下重构底座。当多个微观公理相互碰撞、对齐，便会在你的认知中涌现出全新的系统决策智慧与商业直觉。
+            
+            <div class="principles-intro">
+                <h4>为什么是 PBS 第一性原理？为什么不是教你万能商业技巧？</h4>
+                <p>
+                    市面上教的具体商业技巧就像软件应用，每年都在更新和折旧；而自然科学的客观因果律，则是世界的硬件驱动程序。我们不喂给你直接的商业话术，只把最原始的物理学、生物演化和系统科学原典铺在面前，由你自主在逻辑框架下重构底座。当多个微观原理相互碰撞、对齐，便会在你的认知中涌现出全新的系统决策智慧与商业直觉。这是一个完全由你自主去“悟”、去学、去重建模型的主权空间。
+                </p>
             </div>
+
             <div class="philosophy-grid">
+                <!-- Physics -->
                 <div class="philosophy-card">
-                    <span class="card-num">01 // PHYSICS (天道)</span>
+                    <div class="card-svg-container">
+                        <svg class="principle-svg" width="60" height="60" viewBox="0 0 36 36">
+                            <g class="animated-orbits">
+                                <ellipse cx="18" cy="18" rx="16" ry="6" stroke="#00f299" stroke-width="1" fill="none" opacity="0.3" transform="rotate(0 18 18)"/>
+                                <ellipse cx="18" cy="18" rx="16" ry="6" stroke="#00f299" stroke-width="1" fill="none" opacity="0.3" transform="rotate(60 18 18)"/>
+                                <ellipse cx="18" cy="18" rx="16" ry="6" stroke="#00f299" stroke-width="1" fill="none" opacity="0.3" transform="rotate(120 18 18)"/>
+                                <circle cx="34" cy="18" r="2.2" fill="#00f299" filter="drop-shadow(0 0 3px #00f299)"/>
+                                <circle cx="10" cy="4" r="2.2" fill="#00f299" filter="drop-shadow(0 0 3px #00f299)"/>
+                            </g>
+                            <circle cx="18" cy="18" r="4.5" fill="#ff6a3d" filter="drop-shadow(0 0 5px #ff6a3d)"/>
+                        </svg>
+                    </div>
+                    <span class="card-num">01 // PHYSICS (P-天道)</span>
                     <h4 class="card-title">物理学：确定的边界</h4>
+                    <span class="card-tag">Thermodynamics, Entropy, Limits</span>
                     <p class="card-body">
                         能量预算永远守恒，没有无中生有的奇迹。系统的热力学熵增是腐朽与失控的必然。我们在最冷硬的物理常数下，审计决策的能耗极限与效率天花板。
                     </p>
                 </div>
+
+                <!-- Biology -->
                 <div class="philosophy-card">
-                    <span class="card-num">02 // BIOLOGY (人道)</span>
-                    <h4 class="card-title">生物演化：苟活与博弈</h4>
+                    <div class="card-svg-container">
+                        <svg class="principle-svg" width="60" height="60" viewBox="0 0 36 36">
+                            <g class="animated-helix" transform="translate(10, 2)">
+                                <path d="M 4 2 Q 8 8 4 14 T 4 26 T 4 32" stroke="#ff6a3d" stroke-width="1.8" fill="none"/>
+                                <path d="M 12 2 Q 8 8 12 14 T 12 26 T 12 32" stroke="#00f299" stroke-width="1.8" fill="none"/>
+                                <line x1="4.5" y1="5" x2="11.5" y2="5" stroke="rgba(255,255,255,0.25)" stroke-width="1"/>
+                                <line x1="7.8" y1="8" x2="8.2" y2="8" stroke="rgba(255,255,255,0.25)" stroke-width="1"/>
+                                <line x1="4.5" y1="11" x2="11.5" y2="11" stroke="rgba(255,255,255,0.25)" stroke-width="1"/>
+                                <line x1="4.5" y1="17" x2="11.5" y2="17" stroke="rgba(255,255,255,0.25)" stroke-width="1"/>
+                                <line x1="7.8" y1="20" x2="8.2" y2="20" stroke="rgba(255,255,255,0.25)" stroke-width="1"/>
+                                <line x1="4.5" y1="23" x2="11.5" y2="23" stroke="rgba(255,255,255,0.25)" stroke-width="1"/>
+                                <line x1="4.5" y1="29" x2="11.5" y2="29" stroke="rgba(255,255,255,0.25)" stroke-width="1"/>
+                            </g>
+                        </svg>
+                    </div>
+                    <span class="card-num">02 // BIOLOGY (B-人道)</span>
+                    <h4 class="card-title">生物演化与医学：生存博弈</h4>
+                    <span class="card-tag">ESS, Game Theory, Adaptation</span>
                     <p class="card-body">
-                        自私基因的暗中分配，进化稳定策略（ESS）在职场中的投射。在红皇后效应的疯狂内卷中，诊断多巴胺预测误差带来的商业幻觉，直视身体硬件极限。
+                        自私基因的存活分配与进化稳定策略（ESS）博弈。在红皇后效应的疯狂内卷中，直视身体及心智硬件极限，诊断多巴胺预测误差带来的商业幻觉。
                     </p>
                 </div>
+
+                <!-- Systems -->
                 <div class="philosophy-card">
-                    <span class="card-num">03 // SYSTEMS (世道)</span>
-                    <h4 class="card-title">系统科学：涌现的秩序</h4>
+                    <div class="card-svg-container">
+                        <svg class="principle-svg" width="60" height="60" viewBox="0 0 36 36">
+                            <line x1="8" y1="18" x2="18" y2="8" stroke="rgba(6, 182, 212, 0.4)" stroke-width="1"/>
+                            <line x1="18" y1="8" x2="28" y2="18" stroke="rgba(6, 182, 212, 0.4)" stroke-width="1"/>
+                            <line x1="28" y1="18" x2="18" y2="28" stroke="rgba(6, 182, 212, 0.4)" stroke-width="1"/>
+                            <line x1="18" y1="28" x2="8" y2="18" stroke="rgba(6, 182, 212, 0.4)" stroke-width="1"/>
+                            <line x1="8" y1="18" x2="28" y2="18" stroke="rgba(6, 182, 212, 0.4)" stroke-width="1"/>
+                            <line x1="18" y1="8" x2="18" y2="28" stroke="rgba(6, 182, 212, 0.4)" stroke-width="1"/>
+                            <g class="animated-nodes">
+                                <circle cx="18" cy="8" r="3.2" fill="#06b6d4" filter="drop-shadow(0 0 3px #06b6d4)"/>
+                                <circle cx="8" cy="18" r="3.2" fill="#06b6d4" filter="drop-shadow(0 0 3px #06b6d4)"/>
+                                <circle cx="28" cy="18" r="3.2" fill="#06b6d4" filter="drop-shadow(0 0 3px #06b6d4)"/>
+                                <circle cx="18" cy="28" r="3.2" fill="#06b6d4" filter="drop-shadow(0 0 3px #06b6d4)"/>
+                                <circle cx="18" cy="18" r="4.5" fill="#00f299" filter="drop-shadow(0 0 5px #00f299)"/>
+                            </g>
+                        </svg>
+                    </div>
+                    <span class="card-num">03 // SYSTEMS (S-世道)</span>
+                    <h4 class="card-title">系统科学：网络与涌现</h4>
+                    <span class="card-tag">Feedback Loops, Scaling, Emergence</span>
                     <p class="card-body">
-                        网络中结点的自发演化与 PageRank 财富流向。从规模异速生长中审视大公司的代谢率衰退，利用控制论的延迟负反馈，寻找让局部回归低熵的稳定稳态。
+                        网络节点自发连接形成的秩序。从规模异速生长中审视大公司代谢率衰退，利用控制论的延迟负反馈，在多节点碰撞中涌现出智慧与决策意识。
                     </p>
                 </div>
             </div>
         </section>
 
-        <!-- 3. Metaphor 工具房与男人的机车/钓竿 -->
+        <!-- 3. Metaphor 工具房与男人的修理台 -->
         <section id="metaphor" class="steel-row metaphor-section">
             <div class="metaphor-left">
                 <img src="./pbs_vertical_workbench_v2_1773756158515.webp" alt="PBS Workbench" class="metaphor-img">
@@ -944,13 +1251,13 @@
                     每个男人，活到一定年纪，心里都需要一间“不需要向任何人解释”的地下工具房。
                 </p>
                 <p>
-                    它就像是扔在后备箱里的那一支昂贵的手工钓竿，是车库里在深夜散发着机油气味、只为你一人轰鸣的重型摩托，或者是引擎盖下厚重冷峻的 V8 越野，甚至是在绝对隐秘的书房中，微调着 ComfyUI 参数、榨干英伟达 GPU 显卡算力渲染出来的 Flux 美女跑图。
+                    它就像是扔在后备箱里的那支<b>手工钓鱼竿</b>，是车库里在深夜散发着汽油与金属气味的<b>重型机车</b>，是翻山越岭野性轰鸣的<b>越野车</b>，或者是绝对隐秘的地下室里，微调着 ComfyUI 参数、榨干显力算力渲染着 Flux 画面，亦或是戴上耳机刷着硬核<b>小视频/小片子</b>的理智避难所。
                 </p>
                 <blockquote>
-                    “外面世界太吵，我们在此小憩，在此反思，手工磨亮我们敲打这个现实世界的那把枪。”
+                    “不想面对纷杂的、无效的世界，就只面对自己的世界，这是纯粹的男人的世界。我们在此小憩，在此反思，手工磨亮我们敲打这个现实世界的那把枪。”
                 </blockquote>
                 <p>
-                    拒绝那些无效的酒桌应酬与冗余的感性叙事。这是男人的理智避难所，在这个高效、由第一性原理驱动的硬核逻辑空间里，你不用迎合任何人，你只面对自己和宇宙的底层因果律。
+                    <b>有效：这是绝对有效的世界。</b>基于物理、生物、系统的第一性原理，让我们剥离感性叙事与冗余噪音，不走弯路，不浪费一分精力。你不用迎合任何人，只面对最底层的客观规律。
                 </p>
             </div>
         </section>
@@ -1121,7 +1428,7 @@
             </div>
         </section>
 
-        <!-- 5. 推荐原典书架 -->
+        <!-- 5. 推荐原著书架 (Mockup-accurate Design) -->
         <section id="library" class="steel-row">
             <div class="section-header">
                 <div class="section-title">
@@ -1132,40 +1439,97 @@
             <div class="books-container">
                 <!-- Book 1 -->
                 <div class="book-card">
-                    <div>
+                    <div class="book-cover">
+                        <div class="cover-glow glow-green"></div>
+                        <svg class="cover-svg" width="64" height="64" viewBox="0 0 36 36">
+                            <ellipse cx="18" cy="18" rx="14" ry="4" stroke="#00f299" stroke-width="1.2" fill="none" transform="rotate(30 18 18)"/>
+                            <ellipse cx="18" cy="18" rx="14" ry="4" stroke="#00f299" stroke-width="1.2" fill="none" transform="rotate(90 18 18)"/>
+                            <ellipse cx="18" cy="18" rx="14" ry="4" stroke="#00f299" stroke-width="1.2" fill="none" transform="rotate(150 18 18)"/>
+                            <circle cx="18" cy="18" r="3.5" fill="#ff6a3d" filter="drop-shadow(0 0 4px #ff6a3d)"/>
+                        </svg>
+                        <div class="cover-overlay">
+                            <span>PBS.ZONE</span>
+                            <span>PHYSICS</span>
+                        </div>
+                    </div>
+                    <div class="book-info-block">
                         <div class="book-header">PHYSICS // 天道</div>
                         <h4 class="book-title">《费恩曼物理学讲义》</h4>
                         <p class="book-author">Richard P. Feynman</p>
+                        <div class="book-rating">★★★★★ <span>(4.9)</span></div>
                     </div>
                     <a href="https://item.jd.com/12836287.html" target="_blank" class="book-buy">正版购买 &rarr;</a>
                 </div>
 
                 <!-- Book 2 -->
                 <div class="book-card">
-                    <div>
+                    <div class="book-cover">
+                        <div class="cover-glow glow-orange"></div>
+                        <svg class="cover-svg" width="64" height="64" viewBox="0 0 24 36" transform="translate(6, 0)">
+                            <path d="M 4 4 Q 10 12 4 20 T 4 32" stroke="#ff6a3d" stroke-width="1.8" fill="none"/>
+                            <path d="M 16 4 Q 10 12 16 20 T 16 32" stroke="#00f299" stroke-width="1.8" fill="none"/>
+                            <line x1="5.2" y1="8" x2="14.8" y2="8" stroke="rgba(255,255,255,0.25)" stroke-width="1"/>
+                            <line x1="5.2" y1="16" x2="14.8" y2="16" stroke="rgba(255,255,255,0.25)" stroke-width="1"/>
+                            <line x1="5.2" y1="24" x2="14.8" y2="24" stroke="rgba(255,255,255,0.25)" stroke-width="1"/>
+                        </svg>
+                        <div class="cover-overlay">
+                            <span>PBS.ZONE</span>
+                            <span>EVOLUTION</span>
+                        </div>
+                    </div>
+                    <div class="book-info-block">
                         <div class="book-header">BIOLOGY // 生命</div>
                         <h4 class="book-title">《自私的基因》</h4>
                         <p class="book-author">Richard Dawkins</p>
+                        <div class="book-rating">★★★★★ <span>(4.8)</span></div>
                     </div>
                     <a href="https://item.jd.com/12585973.html" target="_blank" class="book-buy">正版购买 &rarr;</a>
                 </div>
 
                 <!-- Book 3 -->
                 <div class="book-card">
-                    <div>
+                    <div class="book-cover">
+                        <div class="cover-glow glow-teal"></div>
+                        <svg class="cover-svg" width="64" height="64" viewBox="0 0 36 36">
+                            <circle cx="18" cy="18" r="14" stroke="#06b6d4" stroke-width="1" fill="none" stroke-dasharray="2,2"/>
+                            <circle cx="18" cy="18" r="9" stroke="#06b6d4" stroke-width="1.5" fill="none"/>
+                            <circle cx="18" cy="18" r="4" fill="#00f299" filter="drop-shadow(0 0 4px #00f299)"/>
+                            <line x1="18" y1="4" x2="18" y2="32" stroke="rgba(6, 182, 212, 0.3)" stroke-width="0.8"/>
+                            <line x1="4" y1="18" x2="32" y2="18" stroke="rgba(6, 182, 212, 0.3)" stroke-width="0.8"/>
+                        </svg>
+                        <div class="cover-overlay">
+                            <span>PBS.ZONE</span>
+                            <span>SYSTEMS</span>
+                        </div>
+                    </div>
+                    <div class="book-info-block">
                         <div class="book-header">SYSTEMS // 世道</div>
                         <h4 class="book-title">《Scale 规模》</h4>
                         <p class="book-author">Geoffrey West</p>
+                        <div class="book-rating">★★★★★ <span>(4.9)</span></div>
                     </div>
                     <a href="https://item.jd.com/12339591.html" target="_blank" class="book-buy">正版购买 &rarr;</a>
                 </div>
 
                 <!-- Book 4 -->
                 <div class="book-card">
-                    <div>
+                    <div class="book-cover">
+                        <div class="cover-glow glow-purple"></div>
+                        <svg class="cover-svg" width="64" height="64" viewBox="0 0 36 36">
+                            <polygon points="18,4 32,28 4,28" stroke="#a855f7" stroke-width="1.8" stroke-linejoin="round" fill="none"/>
+                            <circle cx="18" cy="20" r="6" stroke="#00f299" stroke-width="1.2" fill="none"/>
+                            <line x1="18" y1="4" x2="18" y2="20" stroke="#00f299" stroke-width="1"/>
+                        </svg>
+                        <div class="cover-overlay">
+                            <span>PBS.ZONE</span>
+                            <span>TACTICS</span>
+                        </div>
+                    </div>
+                    <div class="book-info-block">
                         <div class="book-header">SUNTZU // 战术</div>
                         <h4 class="book-title">《孙子兵法》（十一点注）</h4>
                         <p class="book-author">郭化若 / 译注</p>
+                        <div class="book-rating">★★★★★ <span>(4.9)</span></div>
                     </div>
                     <a href="https://item.jd.com/10052382.html" target="_blank" class="book-buy">正版购买 &rarr;</a>
                 </div>
@@ -1183,29 +1547,29 @@
             <div class="channels-grid">
                 <!-- Tencent IMA -->
                 <div class="channel-card">
-                    <div style="text-align: center; border: 1px solid var(--border-steel); background: #000; padding: 10px; width: 120px; height: 120px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
-                        <span style="font-family: var(--font-mono); font-size: 11px; color: var(--accent-green); margin-bottom: 5px;">Tencent</span>
-                        <span style="font-family: var(--font-mono); font-size: 14px; font-weight: bold; color: #fff;">IMA</span>
-                        <span style="font-size: 8px; color: var(--text-muted); margin-top: 5px;">扫码白嫖</span>
+                    <div class="channel-qr-container">
+                        <span class="qr-label-top">TENCENT</span>
+                        <span class="qr-label-mid">IMA</span>
+                        <span class="qr-label-bot">扫码免费学</span>
                     </div>
                     <div class="channel-info">
                         <h4>云端 AI 科学书童 (腾讯 ima)</h4>
-                        <p>免费扫码白嫖 100 万人共享知识库。主理人 176 讲学习讲义与 113 本科学原著全文向量挂接，你可以向大模型随意提问关于物理与商业的任何漏洞。</p>
+                        <p>免费扫码绑定 100 万人共享知识库。主理人 176 讲学习讲义与 113 本科学原著全文向量挂接，你可以向大模型随意提问关于物理与商业的任何漏洞。</p>
                         <span class="channel-code">> app: ima.copilot</span>
                     </div>
                 </div>
 
                 <!-- Douyin -->
                 <div class="channel-card">
-                    <div style="text-align: center; border: 1px solid var(--border-steel); background: #000; padding: 10px; width: 120px; height: 120px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
-                        <span style="font-family: var(--font-mono); font-size: 11px; color: var(--accent-orange); margin-bottom: 5px;">DOUYIN</span>
-                        <span style="font-family: var(--font-mono); font-size: 14px; font-weight: bold; color: #fff;">抖音号</span>
-                        <span style="font-size: 8px; color: var(--text-muted); margin-top: 5px;">算力秀场</span>
+                    <div class="channel-qr-container">
+                        <span class="qr-label-top qr-label-orange">DOUYIN</span>
+                        <span class="qr-label-mid">抖音号</span>
+                        <span class="qr-label-bot">理智与算力</span>
                     </div>
                     <div class="channel-info">
                         <h4>PBS第一性原理 (公域号)</h4>
                         <p>每天更新主理人的“知识卸妆”短视频，揭露劣质商业课。同时提供 4090/5090 显卡在本地满血运行离线大语言模型与跑美女图的实机演示。</p>
-                        <span class="channel-code">> search: PBS第一性原理</span>
+                        <span class="channel-code channel-code-orange">> search: PBS第一性原理</span>
                     </div>
                 </div>
             </div>
@@ -1264,7 +1628,7 @@
             <div class="subscribe-box">
                 <h3>麦克斯韦之门 - 订阅</h3>
                 <p>
-                    我们不提供即时付费加入通道，以保证圈层认知的纯度。订阅我们，你将在每个月朔日（初一）接收主理人撰写的「月度第一性原理决策审计报告」与新加入向量数据库的 RAG 增量线索。
+                    我们不提供即时付费加入通道，以保证圈层认知的纯度。订阅我们，你将在每个月朔日（初一）接收主理人撰写的「月度第一性原理决策审计报告」与新加入向量数据库的 RAG 增量线索。**订阅必须通过有效的常驻邮箱进行绑定。**
                 </p>
                 <!-- NOTE: 这里集成了 Substack 的原生 API 接口形式，当用户输入邮箱并点击提交后，会安全重定向到 Substack 的官方订阅确认页，完全免去后端开发维护的成本 -->
                 <form action="https://pbszone.substack.com/api/v1/free" method="post" target="_blank">
